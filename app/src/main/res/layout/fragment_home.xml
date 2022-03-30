@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/home_panel_bg_iv"
+            android:layout_width="match_parent"
+            android:layout_height="430dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_first_album_default"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_home_mike"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/btn_main_mike"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_home_ticket"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"/>
+
+        <ImageView
+            android:id="@+id/iv_home_ticket"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/btn_main_ticket"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_home_setting"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"/>
+
+        <ImageView
+            android:id="@+id/iv_home_setting"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/btn_main_setting"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:id="@+id/tv_home_panel_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="휴식을 위한 힐링\n뉴에이지"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/iv_home_mike"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"/>
+
+        <ImageView
+            android:id="@+id/iv_home_play"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/btn_panel_play_large"
+            app:layout_constraintTop_toBottomOf="@id/iv_home_mike"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="20dp"/>
+
+        <TextView
+            android:id="@+id/tv_home_album_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="총 23곡   2022.03.24"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_home_panel_title"
+            android:layout_marginTop="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_home_album_info"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginEnd="22dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="15dp">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/img_album_exp"
+                    android:layout_marginEnd="15dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="In My Bed\nBTS"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/img_album_exp2"
+                    android:layout_marginEnd="15dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="In My Bed\nBTS"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_home_today_music"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="오늘 발매 음악"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/home_panel_bg_iv"
+            android:layout_marginTop="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="20dp"/>
+
+        <ImageView
+            android:id="@+id/iv_home_today_music"
+            android:layout_width="30sp"
+            android:layout_height="30sp"
+            android:src="@drawable/btn_main_arrow_more"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toEndOf="@id/tv_home_today_music"
+            app:layout_constraintTop_toTopOf="@id/tv_home_today_music"
+            android:layout_marginStart="5dp"/>
+
+        <TextView
+            android:id="@+id/tv_home_total"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="종합"
+            android:textSize="15sp"
+            android:textColor="@color/purple_500"
+            app:layout_constraintEnd_toStartOf="@id/tv_home_country"
+            app:layout_constraintTop_toBottomOf="@id/home_panel_bg_iv"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="35dp"/>
+
+        <TextView
+            android:id="@+id/tv_home_country"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="국내"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@id/tv_home_foreign"
+            app:layout_constraintTop_toBottomOf="@id/home_panel_bg_iv"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="20dp"/>
+
+        <TextView
+            android:id="@+id/tv_home_foreign"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="해외"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_panel_bg_iv"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="20dp"/>
+
+        <LinearLayout
+            android:id="@+id/recycler_home_album"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_home_today_music"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:id="@+id/linear_song_album_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/img_album_exp2"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="LILAC"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="IU(아이유)"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/img_album_exp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Butter"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="방탄소년단"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/img_album_exp3"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="savage"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="aespa"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_home_issue"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            app:layout_constraintTop_toBottomOf="@id/recycler_home_album"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="50dp" />
+
+        <TextView
+            android:id="@+id/tv_home_day_audio_top_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/vp_home_issue"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="금요일 오디오 TOP10"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_home_day_audio_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_home_day_audio_top_10"
+            android:text="지금 FLO에서 많이 듣는 오디오 프로그램"
+            android:textSize="12sp"/>
+
+
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
