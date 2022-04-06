@@ -20,6 +20,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <TextView
+                android:id="@+id/tv_song_frag_mix"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="내 취향 MIX"
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="20dp"/>
+
+            <Switch
+                android:id="@+id/switch_song_frag_mix"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@+id/tv_song_frag_mix"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_song_frag_mix"
+                app:layout_constraintStart_toEndOf="@+id/tv_song_frag_mix" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
