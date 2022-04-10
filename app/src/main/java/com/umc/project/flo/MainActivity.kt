@@ -17,9 +17,8 @@ class MainActivity : AppCompatActivity() {
 
         initBottomNavigation()
 
-        val song = Song(binding.mainPlayerSongTitle.text.toString(),
-            binding.mainPlayerSongSinger.text.toString(),
-        0, 60, false)
+        val song = Song(binding.mainPlayerSongTitle.text.toString(), binding.mainPlayerSongSinger.text.toString(),
+                        0, 60, false)
         binding.mainPlayer.setOnClickListener{
             val intent = Intent(this, SongActivity::class.java)
             intent.putExtra("title", song.title)

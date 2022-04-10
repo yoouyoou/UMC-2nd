@@ -21,8 +21,8 @@ class SongActivity : AppCompatActivity() {
         setPlayer(song)
 
         binding.ibSongBack.setOnClickListener{ finish() }
-        binding.ivSongPlayerPlay.setOnClickListener{ setPlayerStatus(false) }
-        binding.ivSongPlayerPause.setOnClickListener{ setPlayerStatus(true) }
+        binding.ivSongPlayerPlay.setOnClickListener{ setPlayerStatus(true) }
+        binding.ivSongPlayerPause.setOnClickListener{ setPlayerStatus(false) }
     }
 
     override fun onDestroy() {
@@ -75,7 +75,7 @@ class SongActivity : AppCompatActivity() {
 
     //시간이 지남에 따라 seekbar와 타이머를 바꿔줘야하므로 binding변수를 사용해야 한다 -> 이너클래스
     //총시간, 진행 중인지 여부
-    inner class Timer(private val playTime:Int, var isPlaying: Boolean=false):Thread(){
+    inner class Timer(private val playTime:Int, var isPlaying: Boolean=true):Thread(){
         private var second : Int = 0
         private var mills : Float = 0f
 
