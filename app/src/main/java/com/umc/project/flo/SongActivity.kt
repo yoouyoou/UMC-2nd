@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.umc.project.flo.databinding.ActivitySongBinding
+import kotlin.system.exitProcess
 
 //클래스를 다른 클래스로 상속을 받을 때는 소괄호를 넣어줘야 함
 class SongActivity : AppCompatActivity() {
@@ -23,6 +25,13 @@ class SongActivity : AppCompatActivity() {
         binding.ibSongBack.setOnClickListener{ finish() }
         binding.ivSongPlayerPlay.setOnClickListener{ setPlayerStatus(true) }
         binding.ivSongPlayerPause.setOnClickListener{ setPlayerStatus(false) }
+        binding.ibSongInfo.setOnClickListener{
+            val dialog = BottomSheetDialog(applicationContext)
+            dialog.setContentView(R.layout.item_bottom_dialog_album_list)
+            dialog.setCanceledOnTouchOutside(true)
+            dialog.create()
+            dialog.show()
+        }
     }
 
     override fun onDestroy() {
