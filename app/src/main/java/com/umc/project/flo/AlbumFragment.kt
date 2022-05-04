@@ -6,12 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.gson.Gson
 import com.umc.project.flo.databinding.FragmentAlbumBinding
 
 class AlbumFragment : Fragment() {
 
     lateinit var binding: FragmentAlbumBinding
     private val information = arrayListOf("수록곡", "상세정보", "영상")
+    private var gson: Gson = Gson()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -19,6 +21,10 @@ class AlbumFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAlbumBinding.inflate(inflater, container, false)
+
+        val albumJson = arguments?.getString("album")
+        val album = gson.fromJson(albumJson, Album::class.java)
+        setInit(album)
 
         binding.ivAlbumBack.setOnClickListener{
             (context as MainActivity).supportFragmentManager.beginTransaction()
@@ -32,5 +38,11 @@ class AlbumFragment : Fragment() {
         }.attach()
 
         return binding.root
+    }
+
+    private fun setInit(album: Album){
+        binding.tvAlbumTitle.text = album.title.toString()
+        binding.tvAlbumSinger.text = album.singer.toString()
+        binding.ivAlbumImage.setImageResource(album.coverImg!!)
     }
 }
