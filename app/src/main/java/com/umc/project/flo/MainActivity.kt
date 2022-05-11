@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.google.gson.Gson
 import com.umc.project.flo.databinding.ActivityMainBinding
@@ -20,13 +21,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        inputDummySongs()
         initBottomNavigation()
 
 //        val song = Song(binding.mainPlayerSongTitle.text.toString(), binding.mainPlayerSongSinger.text.toString(),
 //                        0, 60, false, "music_lilac")
 
         binding.mainPlayer.setOnClickListener{
+            val editor = getSharedPreferences("song", MODE_PRIVATE).edit()
+            editor.putInt("songId", song.id)
+            editor.apply()
             val intent = Intent(this, SongActivity::class.java)
+            startActivity(intent)
+            /* 데이터를 넘길 때 이제 song의 id값만 넘기면 된다
             intent.putExtra("title", song.title)
             intent.putExtra("singer", song.singer)
             intent.putExtra("second", song.second)
@@ -34,7 +41,32 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("isPlaying", song.isPlaying)
             intent.putExtra("music", song.music)
             startActivity(intent)
+            */
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        /* val sp = getSharedPreferences("song", MODE_PRIVATE)
+        val songJson = sp.getString("songData", null)
+
+        song = if(songJson == null){        //처음 sharedPreference에 값이 없을 때
+            Song("라일락", "아이유(IU)", 0, 60, false, "music_lilac")
+        }else{
+            gson.fromJson(songJson, Song::class.java)
+        } */
+        val spf = getSharedPreferences("song", MODE_PRIVATE)
+        val songId = spf.getInt("songId", 0)
+
+        val songDB = SongDatabase.getInstance(this)!!
+        song = if(songId == 0){     //sharedPreference에서 가져온 값이 없을 때
+            songDB.songDao().getSong(1) //첫번째 인덱스 가져오기
+        }else{
+            songDB.songDao().getSong(songId)
+        }
+
+        Log.d("song ID", song.id.toString())
+        setMiniPlayer(song)
     }
 
     private fun initBottomNavigation(){
@@ -82,18 +114,35 @@ class MainActivity : AppCompatActivity() {
         binding.mainSeekbar.progress = (song.second * 100000) / song.playTime
     }
 
-    override fun onStart() {
-        super.onStart()
-        val sp = getSharedPreferences("song", MODE_PRIVATE)
-        val songJson = sp.getString("songData", null)
+    //DB에 더미데이터 넣기
+   private fun inputDummySongs(){
+        val songDB = SongDatabase.getInstance(this)!! //songDB의 instance받아오기
+        val songs = songDB.songDao().getSongs()
 
-        song = if(songJson == null){        //처음 sharedPreference에 값이 없을 때
-            Song("라일락", "아이유(IU)", 0, 60, false, "music_lilac")
-        }else{
-            gson.fromJson(songJson, Song::class.java)
-        }
+        //songs에 데이터가 있다면 함수 그냥 종료 비어있다면 더미데이터 넣기
+        if(songs.isNotEmpty()) return
 
-        setMiniPlayer(song)
-    }
+        songDB.songDao().insert(
+            Song("Butter", "BTS", 0, 230, false, "music_butter", R.drawable.img_album_exp, false)
+        )
+        songDB.songDao().insert(
+            Song("LILAC", "아이유 (IU)", 0, 230, false, "music_lilac", R.drawable.img_album_exp2, false)
+        )
+        songDB.songDao().insert(
+            Song("Next Level", "aespa", 0, 210, false, "music_next", R.drawable.img_album_exp3, false)
+        )
+        songDB.songDao().insert(
+            Song("Boy with Luv", "BTS", 0, 210, false, "music_boy", R.drawable.img_album_exp4, false)
+        )
+        songDB.songDao().insert(
+            Song("BBoom BBoom", "모모랜드", 0, 240, false, "music_bboom", R.drawable.img_album_exp5, false)
+        )
+        songDB.songDao().insert(
+            Song("Weekend", "태연(TAEYEON)", 0, 200, false, "music_flu", R.drawable.img_album_exp6, false)
+        )
+
+        val _songs = songDB.songDao().getSongs()
+        Log.d("DB data", _songs.toString())
+   }
 
 }
