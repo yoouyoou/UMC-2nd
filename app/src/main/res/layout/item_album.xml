@@ -30,11 +30,12 @@
     
     <TextView
         android:id="@+id/tv_item_album_title"
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:text="LILAC"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="18sp"
+        android:maxLength="10"
         app:layout_constraintTop_toBottomOf="@+id/cv_album_img"
         app:layout_constraintStart_toStartOf="@id/cv_album_img"/>
 

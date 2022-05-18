@@ -18,6 +18,7 @@
         android:background="@android:color/transparent"/>
 
     <ImageView
+        android:id="@+id/iv_song_album_like"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:src="@drawable/ic_my_like_off"

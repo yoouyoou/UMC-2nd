@@ -14,6 +14,7 @@ import com.umc.project.flo.databinding.FragmentHomeBinding
 class HomeFragment : Fragment() {
     lateinit var binding : FragmentHomeBinding
     private var albumDatas = ArrayList<Album>()
+    private lateinit var songDB: SongDatabase
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,17 +23,11 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        /*오늘발매음악 리사이클러뷰 작업*/
-        //더미 데이터
-        albumDatas.apply {
-            add(Album("LILAC", "아이유 (IU)", R.drawable.img_album_exp2))
-            add(Album("Butter", "방탄소년단", R.drawable.img_album_exp))
-            add(Album("Next Level", "aespa", R.drawable.img_album_exp3))
-            add(Album("Boy with Luv", "방탄소년단", R.drawable.img_album_exp4))
-            add(Album("BBoom BBoom", "모모랜드", R.drawable.img_album_exp5))
-            add(Album("Weekend", "태연 (TAEYEON)", R.drawable.img_album_exp6))
-        }
+        //앨범리스트 및 더미데이터 생성
+        songDB = SongDatabase.getInstance(requireContext())!!
+        albumDatas.addAll(songDB.albumDao().getAlbums())
 
+        /*오늘발매음악 리사이클러뷰 작업*/
         //리사이클러뷰에 어댑터 연결 및 레이아웃 매니저 설정
         val albumRVAdapter = AlbumRVAdapter(albumDatas)
         binding.recyclerHomeAlbum.adapter = albumRVAdapter

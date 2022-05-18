@@ -11,7 +11,7 @@ import com.umc.project.flo.databinding.FragmentLockerListBinding
 class LockerListFragment: Fragment() {
     lateinit var binding: FragmentLockerListBinding
     lateinit var songDB: SongDatabase
-    private var songList= ArrayList<Album>()
+    private var songList= ArrayList<Song>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,14 +50,17 @@ class LockerListFragment: Fragment() {
     }
 
     private fun initRecyclerView(){
-        val lockerAdapter = LockerRVAdapter(songList)
+        val lockerAdapter = LockerRVAdapter()
+        binding.recyclerFragLockerList.adapter = lockerAdapter
+        binding.recyclerFragLockerList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
         lockerAdapter.addSongs(songDB.songDao().getLikedSongs(true) as ArrayList<Song>)
+
         lockerAdapter.setMyItemClickListener(object: LockerRVAdapter.MyItemClickListener{
+            //클릭리스너 구체화해서 db도 업데이트
             override fun onRemoveSong(songId: Int) {
                 songDB.songDao().updateIsLikeById(false, songId)
             }
         })
-        binding.recyclerFragLockerList.adapter = lockerAdapter
-        binding.recyclerFragLockerList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     }
 }

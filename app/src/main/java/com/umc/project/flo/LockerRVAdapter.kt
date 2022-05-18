@@ -6,13 +6,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.project.flo.databinding.ItemLockerSongBinding
 
-class LockerRVAdapter(private val songList: ArrayList<Album>): RecyclerView.Adapter<LockerRVAdapter.ViewHolder>() {
+class LockerRVAdapter(): RecyclerView.Adapter<LockerRVAdapter.ViewHolder>() {
 
     private val songs = ArrayList<Song>()
+
     interface MyItemClickListener{
         fun onRemoveSong(songId: Int)
     }
     private lateinit var mItemClickListener: MyItemClickListener
+
     fun setMyItemClickListener(itemClickListener: MyItemClickListener){
         mItemClickListener = itemClickListener
     }
@@ -25,8 +27,8 @@ class LockerRVAdapter(private val songList: ArrayList<Album>): RecyclerView.Adap
 
     //뷰홀더에 데이터 바인딩
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(songList[position])
-        //클릭이벤트
+        holder.bind(songs[position])
+        //클릭이벤트- 아이템이 눌렸을 시 클릭리스너 동작하도록
         holder.binding.ibItemLockerMore.setOnClickListener{
             mItemClickListener.onRemoveSong(songs[position].id)
             removeSong(position)
@@ -34,7 +36,7 @@ class LockerRVAdapter(private val songList: ArrayList<Album>): RecyclerView.Adap
     }
 
     //데이터 크기 반환
-    override fun getItemCount(): Int = songList.size
+    override fun getItemCount(): Int = songs.size
 
     //좋아요한 노래들을 담는 함수
     fun addSongs(songs: ArrayList<Song>){
@@ -51,9 +53,9 @@ class LockerRVAdapter(private val songList: ArrayList<Album>): RecyclerView.Adap
     }
 
     inner class ViewHolder(val binding: ItemLockerSongBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(song: Album){
-            binding.tvItemLockerTitle.text = song.title.toString()
-            binding.tvItemLockerSinger.text = song.singer.toString()
+        fun bind(song: Song){
+            binding.tvItemLockerTitle.text = song.title
+            binding.tvItemLockerSinger.text = song.singer
             binding.ivItemLockerImage.setImageResource(song.coverImg!!)
         }
     }
