@@ -44,8 +44,15 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             */
         }
+
+        Log.d("MainActivity/JWT_TO_SERVER", getJwt().toString())
     }
 
+    //로그인 후 jwt토큰값이 제대로 들어왔는지 확인위해
+    private fun getJwt():String? {
+        val spf = this.getSharedPreferences("auth2", AppCompatActivity.MODE_PRIVATE)
+        return spf!!.getString("jwt", "")
+    }
     override fun onStart() {
         super.onStart()
         /* val sp = getSharedPreferences("song", MODE_PRIVATE)

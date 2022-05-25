@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.umc.project.flo.databinding.ActivityLoginBinding
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), LoginView {
 
     lateinit var binding: ActivityLoginBinding
 
@@ -35,6 +35,11 @@ class LoginActivity : AppCompatActivity() {
 
         val email:String = binding.loginIdEt.text.toString() + "@" + binding.loginDirectInputEt.text.toString()
         val pwd:String = binding.loginPasswordEt.text.toString()
+
+        val authService = AuthService()
+        authService.setLoginView(this)
+        authService.login(User(email, pwd, ""))
+        /*
         val songDB = SongDatabase.getInstance(this)!!
         val user = songDB.userDao().getUser(email, pwd)
 
@@ -44,6 +49,7 @@ class LoginActivity : AppCompatActivity() {
             startMainActivity()
         }
         Toast.makeText(this, "회원 정보가 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
+        */
     }
 
     //서버가 없기 때문에 jwt를 userIdx로 대체해서 sharedPreference에 저장
@@ -55,9 +61,31 @@ class LoginActivity : AppCompatActivity() {
         editor.apply()
     }
 
+    private fun saveJwt2(jwt:String){
+        val spf = getSharedPreferences("auth2", MODE_PRIVATE)
+        val editor = spf.edit()
+
+        editor.putString("jwt", jwt)
+        editor.apply()
+    }
+
     //메인화면으로 넘어가는 함수
     private fun startMainActivity(){
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+    }
+
+    override fun onLoginSuccess(code:Int, result:Result) {
+        //원래 개발시에는 userIdx와 jwt를 둘 다 저장하긴 함
+        when(code){
+            1000 -> {
+                saveJwt2(result.jwt)
+                startMainActivity()
+            }
+        }
+    }
+
+    override fun onLoginFailure() {
+        //실패처리
     }
 }
