@@ -27,13 +27,17 @@ class FloChartRVAdapter(val context:Context, val result: FloChartResult): Recycl
             Glide.with(context).load(result.songs[position].coverImgUrl).into(holder.coverImg)
         }
         holder.singer.text = result.songs[position].singer
+        holder.title.text = result.songs[position].title
+        holder.no.text = (position + 1).toString()
     }
 
     override fun getItemCount(): Int = result.songs.size
 
     inner class ViewHolder(val binding: ItemChartBinding) : RecyclerView.ViewHolder(binding.root){
-        val coverImg : ImageView = binding.imageView
-        val singer: TextView = binding.textView
+        val coverImg : ImageView = binding.ivFloChartImg
+        val no: TextView = binding.tvFloChartNo
+        val title: TextView = binding.tvFloChartTitle
+        val singer: TextView = binding.tvFloChartSinger
     }
 
 }

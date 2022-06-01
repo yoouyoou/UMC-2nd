@@ -48,6 +48,11 @@ class LockerFragment : Fragment() {
         initViews()
     }
 
+    private fun getJwt2():String? {
+        val spf = activity?.getSharedPreferences("auth2", AppCompatActivity.MODE_PRIVATE)
+        return spf!!.getString("jwt", null)
+    }
+
     private fun getJwt():Int{
         val spf = activity?.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
         return spf!!.getInt("jwt", 0)   //가져온값이 없으면 0
@@ -55,8 +60,9 @@ class LockerFragment : Fragment() {
 
     //뷰의 text를 로그인/로그아웃 상태확인 후 변환
    private fun initViews(){
-       val jwt: Int = getJwt()
-        if(jwt == 0) {
+       //val jwt: Int = getJwt()
+        val jwt:String? = getJwt2()
+        if(jwt == null) {    //if(jwt == 0)
             binding.tvFragLockerLogin.text = "로그인"
             binding.tvFragLockerLogin.setOnClickListener{
                 startActivity(Intent(activity, LoginActivity::class.java))
@@ -73,11 +79,17 @@ class LockerFragment : Fragment() {
 
     //로그아웃
     private fun logout(){
+        val spf = activity?.getSharedPreferences("auth2", AppCompatActivity.MODE_PRIVATE)
+        val editor = spf!!.edit()
+        editor.remove("jwt") //key값이 jwt인 value를 제거
+        editor.apply()
+        /*
         //jwt를 0으로
         val spf = activity?.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
         val editor = spf!!.edit()
         editor.remove("jwt")    //key값이 jwt인 value를 제거
         editor.apply()
+        */
    }
 
 }
