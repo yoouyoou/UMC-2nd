@@ -21,7 +21,7 @@
  ##  💜FLO 클론 화면
  
  <p align="left">
- <img src="https://user-images.githubusercontent.com/81459048/171431384-607d0ef4-4ff4-495b-bb4d-73ae3fc95c8e.png"  width="240" height="500"/> &nbsp;
+ <!--<img src="https://user-images.githubusercontent.com/81459048/171431384-607d0ef4-4ff4-495b-bb4d-73ae3fc95c8e.png"  width="240" height="500"/> &nbsp;-->
  <img src="https://user-images.githubusercontent.com/81459048/171429540-0ab96de8-8a2b-4c5d-a431-32616bdaa3f4.png" width="240" height="500"/> &nbsp;
  <img src="https://user-images.githubusercontent.com/81459048/171431036-3f61af57-424a-466a-a74d-004e1fb050fa.png" width="240" height="500"/> &nbsp;
  <img src="https://user-images.githubusercontent.com/81459048/171430635-e00c649f-aabd-4de1-a221-60af03c533b3.png" width="240" height="500"/>
