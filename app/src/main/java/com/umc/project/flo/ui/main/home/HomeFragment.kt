@@ -67,15 +67,20 @@ class HomeFragment : Fragment() {
         binding.homePanelBgIv.adapter = panelAdapter
         binding.homePanelBgIv.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         //인디케이터 작업
+        binding.indicatorPanel.setViewPager2(binding.homePanelBgIv)
+        /* tablayout으로 인디케이터 만듬
         TabLayoutMediator(binding.tlIndicatorPanel, binding.homePanelBgIv){
             tab, position ->
             binding.homePanelBgIv.currentItem = tab.position
         }.attach()
+        */
 
 
         val bannerAdapter = BannerVPAdapter(this)
-        bannerAdapter.addFragment(BannerFragment(R.drawable.img_home_viewpager_exp));
-        bannerAdapter.addFragment(BannerFragment(R.drawable.img_home_viewpager_exp2));
+        bannerAdapter.addFragment(arrayListOf(BannerFragment(R.drawable.img_home_viewpager_exp),
+            BannerFragment(R.drawable.img_home_viewpager_exp2)))
+//        bannerAdapter.addFragment(BannerFragment(R.drawable.img_home_viewpager_exp));
+//        bannerAdapter.addFragment(BannerFragment(R.drawable.img_home_viewpager_exp2));
         binding.vpHomeIssue.adapter = bannerAdapter
         binding.vpHomeIssue.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
